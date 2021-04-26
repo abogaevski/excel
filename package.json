@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/abogaevski/excel#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "^8.1.1",
+    "html-webpack-plugin": "^5.3.1",
     "webpack": "^5.35.1",
     "webpack-cli": "^4.6.0"
   }
