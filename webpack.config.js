@@ -58,7 +58,7 @@ module.exports = (env, argv) => {
     plugins: plugins(),
     devtool: isDev ? 'source-map' : false,
     devServer: {
-      port: 3000,
+      port: 5000,
       open: true,
       hot: true,
     },
@@ -77,9 +77,6 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
           },
         },
       ],
