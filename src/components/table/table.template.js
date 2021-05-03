@@ -4,16 +4,24 @@ const CODES = {
 };
 
 function createRow(content, index = '') {
+  const resize = index ? `<div class="row-resize"></div>` : '';
   return `
     <div class="row">
-        <div class="row-info">${index}</div>
+        <div class="row-info">
+            ${index}
+            ${resize}
+        </div>
         <div class="row-data">${content}</div>
    </div>
   `;
 }
 
 function toCol(column) {
-  return `<div class="column">${column}</div>`;
+  return `
+      <div class="column">${column}
+            <div class="col-resize"></div>
+      </div>
+  `;
 }
 
 function createCell(cell) {
