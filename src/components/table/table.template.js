@@ -4,20 +4,32 @@ const CODES = {
 };
 
 function createRow(content, index = '') {
+  const resize = index
+    ? `<div class="row-resize" data-resize="row"></div>`
+    : '';
   return `
-    <div class="row">
-        <div class="row-info">${index}</div>
+    <div class="row" data-type="resizable" data-row="${index}">
+        <div class="row-info">
+            ${index}
+            ${resize}
+        </div>
         <div class="row-data">${content}</div>
    </div>
   `;
 }
 
-function toCol(column) {
-  return `<div class="column">${column}</div>`;
+function toCol(column, index) {
+  return `
+      <div class="column" data-type="resizable" data-col="${index}">
+            ${column}
+            <div class="col-resize" data-resize="col"></div>
+      </div>
+  `;
 }
 
-function createCell(cell) {
-  return `<div class="cell" contenteditable="true">${cell}</div>`;
+function toCell(_, col) {
+  return `<div class="cell" contenteditable="true" data-col="${col}">
+          </div>`;
 }
 
 function toChar(_, index) {
@@ -32,13 +44,12 @@ export function createTable(rowsCount = 20) {
       .map(toChar)
       .map(toCol)
       .join('');
-
   rows.push(createRow(cols));
 
   for (let i = 0; i < rowsCount; i++) {
     const cells = new Array(colsCount)
         .fill('')
-        .map(createCell)
+        .map(toCell)
         .join('');
     rows.push(createRow(cells, i + 1));
   }
