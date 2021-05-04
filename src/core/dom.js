@@ -13,6 +13,10 @@ class Dom {
     return this.$el.outerHTML.trim();
   }
 
+  all(selector) {
+    return this.$el.querySelectorAll(selector);
+  }
+
   clear() {
     this.html();
     return this;
@@ -37,6 +41,28 @@ class Dom {
     }
 
     return this;
+  }
+
+  closest(selector) {
+    return $(this.$el.closest(selector));
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect();
+  }
+
+  css(styles = {}) {
+    Object
+        .keys(styles)
+        .forEach((param) => {
+          this.$el.style[param] = styles[param];
+        });
+
+    return this;
+  }
+
+  get data() {
+    return this.$el.dataset;
   }
 }
 
