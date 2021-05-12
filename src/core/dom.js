@@ -13,6 +13,14 @@ class Dom {
     return this.$el.outerHTML.trim();
   }
 
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.textContent = text;
+      return this;
+    }
+    return this.$el.textContent.trim();
+  }
+
   all(selector) {
     return this.$el.querySelectorAll(selector);
   }
@@ -61,8 +69,36 @@ class Dom {
     return this;
   }
 
+  addClass( className = '') {
+    return this.$el.classList.add(className);
+  }
+
+  removeClass(className = '') {
+    return this.$el.classList.remove(className);
+  }
+
+  find(selector) {
+    return $(this.$el.querySelector(selector));
+  }
+
   get data() {
     return this.$el.dataset;
+  }
+
+  focus() {
+    this.$el.focus();
+    return this;
+  }
+
+  id(parser = false) {
+    if (parser) {
+      const parsed = this.id().split(':');
+      return {
+        row: +parsed[0],
+        col: +parsed[1],
+      };
+    }
+    return this.data.id;
   }
 }
 
