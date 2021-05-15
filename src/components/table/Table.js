@@ -9,6 +9,7 @@ import {
   nextSelector,
 } from '@/components/table/table.functions';
 import {TableSelection} from '@/components/table/TableSelection';
+import * as actions from '@/store/actions';
 
 export class Table extends ExcelComponent {
   static className = 'excel__table';
@@ -22,7 +23,7 @@ export class Table extends ExcelComponent {
   }
 
   toHtml() {
-    return createTable(100);
+    return createTable(20, this.$getState());
   }
 
   prepare() {
@@ -42,9 +43,18 @@ export class Table extends ExcelComponent {
     this.selectCell(this.$root.find('[data-id="0:0"]'));
   }
 
+  async resizeTable(event) {
+    try {
+      const data = await resizeHandler(this.$root, event);
+      this.$dispatch(actions.tableResize(data));
+    } catch (e) {
+      console.warn('Resize error', e.message);
+    }
+  }
+
   onMousedown(event) {
     if (shouldResize(event)) {
-      resizeHandler(this.$root, event);
+      this.resizeTable(event);
     } else if (isCell(event)) {
       const $target = $(event.target);
 
