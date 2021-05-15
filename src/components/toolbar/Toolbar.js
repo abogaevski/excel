@@ -11,6 +11,10 @@ export class Toolbar extends ExcelComponent {
     });
   }
 
+  init() {
+    super.init();
+  }
+
   toHtml() {
     return `
       <button class="button">
