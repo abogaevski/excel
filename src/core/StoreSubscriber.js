@@ -3,8 +3,8 @@ import {isEqual} from '@core/utils';
 export class StoreSubscriber {
   constructor(store) {
     this.store = store;
-    this.prevState = {};
     this.sub = null;
+    this.prevState = {};
   }
 
   subscribeComponents(components) {
