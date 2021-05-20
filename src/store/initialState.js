@@ -1,5 +1,5 @@
 import {storage} from '@core/utils';
-import {defaultStyles} from '@/constants';
+import {defaultStyles, defaultTableName} from '@/constants';
 
 const defaultState = {
   colState: {},
@@ -7,6 +7,7 @@ const defaultState = {
   dataState: {},
   stylesState: {},
   currentText: '',
+  tableName: defaultTableName,
   currentStyles: defaultStyles,
 };
 

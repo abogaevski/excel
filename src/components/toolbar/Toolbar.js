@@ -21,9 +21,11 @@ export class Toolbar extends ExcelStateComponent {
   init() {
     super.init();
   }
+
   get template() {
     return createToolbar(this.state);
   }
+
   toHtml() {
     return this.template;
   }
