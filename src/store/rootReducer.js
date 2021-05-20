@@ -3,7 +3,7 @@ import {
   CHANGE_STYLES,
   TABLE_RESIZE,
   APPLY_STYLE,
-  CHANGE_TABLENAME,
+  CHANGE_TITLE,
 } from './types';
 
 export function rootReducer(state, action) {
@@ -33,9 +33,9 @@ export function rootReducer(state, action) {
         [field]: val,
         currentStyles: {...state.currentStyles, ...action.data.value},
       };
-    case CHANGE_TABLENAME:
-      field = 'tableName';
-      return {...state, [field]: action.data.value};
+    case CHANGE_TITLE:
+      field = 'title';
+      return {...state, [field]: action.data};
     default: return state;
   }
 }

@@ -55,7 +55,10 @@ function toCell(state, row) {
     const width = getWidth(state.colState, col);
     const text = state.dataState[id] || '';
     const styles =
-      toInlineStyles(state.stylesState[id] || defaultStyles);
+      toInlineStyles({
+        ...defaultStyles,
+        ...state.stylesState[id],
+      });
     return `
       <div 
         class="cell"

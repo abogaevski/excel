@@ -9,7 +9,6 @@ export class ExcelStateComponent extends ExcelComponent {
     return JSON.stringify(this.state, null, 2);
   }
   initState(initialState = {}) {
-    console.log(initialState);
     this.state = {...initialState};
   }
 
