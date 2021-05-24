@@ -11,6 +11,7 @@ import {
 import {TableSelection} from '@/components/table/TableSelection';
 import * as actions from '@/store/actions';
 import {defaultStyles} from '@/constants';
+import {parse} from '@core/parse';
 
 export class Table extends ExcelComponent {
   static className = 'excel__table';
@@ -30,9 +31,10 @@ export class Table extends ExcelComponent {
   prepare() {
     this.selection = new TableSelection(this.$root);
 
-    this.$on('formula:input', (text) => {
-      this.selection.current.text(text);
-      this.updateTextInStore(text);
+    this.$on('formula:input', (value) => {
+      this.selection.current.attr('data-value', value);
+      this.selection.current.text(parse(value));
+      this.updateTextInStore(value);
     });
 
     this.$on('formula:done', () => {
