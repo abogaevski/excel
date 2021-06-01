@@ -8,6 +8,7 @@ export class Router {
     }
     this.$placeholder = $(selector);
     this.routes = routes;
+    this.page = null;
 
     this.changePageHandler = this.changePageHandler.bind(this);
 
@@ -20,8 +21,15 @@ export class Router {
   }
 
   changePageHandler() {
-    console.log(ActiveRoute.path);
-    console.log('Params', ActiveRoute.param);
+    if (this.page) {
+      this.page.destroy();
+      this.page = null;
+    }
+    const Page = this.routes[ActiveRoute.path] || this.routes.dashboard;
+    this.page = new Page();
+
+    this.$placeholder.clear().append(this.page.getRoot());
+    this.page.afterRender();
   }
 
   destroy() {
